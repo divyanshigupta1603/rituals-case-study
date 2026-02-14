@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rituals Case Study - Divyanshi Gupta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --light: #F4F6F9;
+            --lightSurface: #E9ECFF;
+            --dark: #0B0E1A;
+            --darkSurface: #131728;
+            --text: #E0E3FF;
+            --textOnLight: #0A0E24;
+            --muted: #6A7090;
+            --accent: #5B7FFF;
+            --border: #232850;
+            --borderLight: #D0D6E8;
+            --red: #E05A7F;
+            --amber: #9B7FFF;
+            --ritualsBg: #0F1424;
+            --ritualsAccent: #5B7FFF;
+            --ritualsBone: #F0ECFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .max-w-4xl {
+            max-width: 56rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .grid-cols-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .grid-cols-4 {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .grid-cols-5 {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+
+        .grid-cols-12 {
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+        }
+
+        .col-span-2 { grid-column: span 2; }
+        .col-span-3 { grid-column: span 3; }
+        .col-span-4 { grid-column: span 4; }
+        .col-span-5 { grid-column: span 5; }
+
+        .gap-2 { gap: 0.5rem; }
+        .gap-3 { gap: 0.75rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .gap-8 { gap: 2rem; }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+
+        .mb-1 { margin-bottom: 0.25rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+
+        .mt-3 { margin-top: 0.75rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .mt-8 { margin-top: 2rem; }
+        .mt-10 { margin-top: 2.5rem; }
+
+        .p-3 { padding: 0.75rem; }
+        .p-4 { padding: 1rem; }
+        .p-5 { padding: 1.25rem; }
+        .p-6 { padding: 1.5rem; }
+        .p-8 { padding: 2rem; }
+
+        .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+        .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+
+        .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+        .py-5 { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+
+        .rounded-sm {
+            border-radius: 0.125rem;
+        }
+
+        .h-1\.5 {
+            height: 0.375rem;
+        }
+
+        .h-8 {
+            height: 2rem;
+        }
+
+        .w-8 {
+            width: 2rem;
+        }
+
+        .w-16 {
+            width: 4rem;
+        }
+
+        .h-16 {
+            height: 4rem;
+        }
+
+        .h-full {
+            height: 100%;
+        }
+
+        .overflow-hidden {
+            overflow: hidden;
+        }
+
+        .space-y-2 > * + * {
+            margin-top: 0.5rem;
+        }
+
+        .space-y-3 > * + * {
+            margin-top: 0.75rem;
+        }
+
+        .space-y-4 > * + * {
+            margin-top: 1rem;
+        }
+
+        .shrink-0 {
+            flex-shrink: 0;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .absolute {
+            position: absolute;
+        }
+
+        .inset-0 {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .top-0 { top: 0; }
+        .left-0 { left: 0; }
+        .right-0 { right: 0; }
+        .bottom-0 { bottom: 0; }
+
+        .top-50\% {
+            top: 50%;
+        }
+
+        .left-50\% {
+            left: 50%;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .whitespace-pre-line {
+            white-space: pre-line;
+        }
+
+        .section {
+            padding: 80px 48px;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.65s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(52px, 7vw, 80px);
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 48px 24px;
+            }
+
+            .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .col-span-3 {
+                grid-column: span 1;
+            }
+
+            .col-span-2 {
+                grid-column: span 1;
+            }
+
+            .col-span-5 {
+                grid-column: span 1;
+            }
+
+            h1 {
+                font-size: 48px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ━━━ HERO ━━━ -->
+    <section style="background-color: var(--dark); min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 72px; position: relative; overflow: hidden;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(165deg, var(--darkSurface) 0%, var(--dark) 40%, #0D1117 100%);"></div>
+        <div style="position: absolute; inset: 0; opacity: 0.025; background-image: linear-gradient(var(--accent) 1px, transparent 1px), linear-gradient(90deg, var(--accent) 1px, transparent 1px); background-size: 64px 64px;"></div>
+
+        <div style="position: absolute; top: 0; left: 0; right: 0; padding: 1.25rem 3rem; display: flex; align-items: center; justify-content: space-between; z-index: 2;">
+            <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; cursor: pointer;">← BACK TO PORTFOLIO</span>
+            <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.15em;">CASE STUDY 01</span>
+        </div>
+
+        <div style="max-width: 56rem; position: relative; z-index: 2;">
+            <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 24px;">
+                Market Analysis · Brand Strategy · GTM · Live Experiment
+            </div>
+            <h1 style="margin-bottom: 24px;">RITUALS</h1>
+            <p style="font-size: 20px; font-weight: 300; color: #9CA3A0; line-height: 1.55; max-width: 580px; margin-bottom: 32px;">
+                I mapped the loneliness economy — a market where every product monetizes emotional stagnation and none build infrastructure for real connection. Then I found the white space, designed a product to fill it, and tested it with real people in Bangalore. Four weeks later, six strangers had a graduation dinner together.
+            </p>
+            <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1.5 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--accent); border: 1px solid var(--border); letter-spacing: 0.04em;">White Space Identification</span>
+                <span class="px-3 py-1.5 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--accent); border: 1px solid var(--border); letter-spacing: 0.04em;">Competitive Analysis</span>
+                <span class="px-3 py-1.5 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--accent); border: 1px solid var(--border); letter-spacing: 0.04em;">JTBD Mapping</span>
+                <span class="px-3 py-1.5 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--accent); border: 1px solid var(--border); letter-spacing: 0.04em;">Brand System</span>
+                <span class="px-3 py-1.5 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--accent); border: 1px solid var(--border); letter-spacing: 0.04em;">User Research</span>
+                <span class="px-3 py-1.5 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--accent); border: 1px solid var(--border); letter-spacing: 0.04em;">Pilot Design</span>
+                <span class="px-3 py-1.5 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--accent); border: 1px solid var(--border); letter-spacing: 0.04em;">GTM Strategy</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ━━━ THE MARKET ━━━ -->
+    <section class="section" style="background-color: var(--light);">
+        <div class="max-w-4xl">
+            <div class="fade-in">
+                <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">Part 1 — The Market</div>
+                <h2 style="color: var(--textOnLight); margin-bottom: 12px;">The loneliness economy is a billion-dollar market built on band-aids.</h2>
+                <p style="font-size: 15px; font-weight: 300; color: var(--muted); line-height: 1.7; max-width: 620px; margin-bottom: 32px;">
+                    Urban Indians spend ₹20,000+ per year across dating apps, AI companions, quick commerce, and streaming subscriptions. The spending isn't random — it maps to a consistent emotional architecture. Every product in this market is solving for the same underlying condition: situational loneliness during major life transitions. But almost none are solving it well. They're selling relief. Not resolution.
+                </p>
+            </div>
+
+            <div class="fade-in p-8 rounded-sm" style="background-color: var(--dark); margin-bottom: 24px; transition: all 0.65s ease-out 0.08s;">
+                <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">Demand Mapping — Where the money flows</div>
+                <p style="font-size: 14px; font-weight: 300; color: #9CA3A0; line-height: 1.65; margin-bottom: 24px; max-width: 580px;">
+                    I mapped five categories of spending in the loneliness economy. Each one addresses a real emotional need — but through a mechanism that creates dependency, not independence.
+                </p>
+                <div class="space-y-3">
+                    <div class="grid grid-cols-12 gap-4" style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
+                        <div class="col-span-3">
+                            <div style="font-size: 13px; font-weight: 600; color: var(--text);">Low-Risk Companionship</div>
+                            <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); margin-top: 2px;">Replika, Character.AI, parasocial YouTube</div>
+                        </div>
+                        <div class="col-span-5" style="font-size: 13px; color: #9CA3A0; line-height: 1.5;">Feeling seen without the risk of rejection</div>
+                        <div class="col-span-4" style="font-size: 12px; color: var(--amber); line-height: 1.4;">Zero depth. Zero lasting impact.</div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-4" style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
+                        <div class="col-span-3">
+                            <div style="font-size: 13px; font-weight: 600; color: var(--text);">Control Through Immediacy</div>
+                            <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); margin-top: 2px;">Blinkit, Zepto, Swiggy Instamart</div>
+                        </div>
+                        <div class="col-span-5" style="font-size: 13px; color: #9CA3A0; line-height: 1.5;">Stability when life feels chaotic</div>
+                        <div class="col-span-4" style="font-size: 12px; color: var(--amber); line-height: 1.4;">Treats the symptom, not the cause.</div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-4" style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
+                        <div class="col-span-3">
+                            <div style="font-size: 13px; font-weight: 600; color: var(--text);">Validation Infrastructure</div>
+                            <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); margin-top: 2px;">Instagram, LinkedIn Premium, Twitter Blue</div>
+                        </div>
+                        <div class="col-span-5" style="font-size: 13px; color: #9CA3A0; line-height: 1.5;">Proof that you exist and matter</div>
+                        <div class="col-span-4" style="font-size: 12px; color: var(--amber); line-height: 1.4;">Visibility ≠ belonging.</div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-4" style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
+                        <div class="col-span-3">
+                            <div style="font-size: 13px; font-weight: 600; color: var(--text);">Low-Stakes Interaction</div>
+                            <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); margin-top: 2px;">Bumble, Hinge, Lunchclub</div>
+                        </div>
+                        <div class="col-span-5" style="font-size: 13px; color: #9CA3A0; line-height: 1.5;">Possibility of connection without commitment</div>
+                        <div class="col-span-4" style="font-size: 12px; color: var(--amber); line-height: 1.4;">Optimises for matches, not friendships.</div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-4" style="padding: 1rem 0;">
+                        <div class="col-span-3">
+                            <div style="font-size: 13px; font-weight: 600; color: var(--text);">Escapist Immersion</div>
+                            <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); margin-top: 2px;">Netflix, gaming, podcasts</div>
+                        </div>
+                        <div class="col-span-5" style="font-size: 13px; color: #9CA3A0; line-height: 1.5;">Distraction from discomfort</div>
+                        <div class="col-span-4" style="font-size: 12px; color: var(--amber); line-height: 1.4;">Numbs the feeling. Doesn't address it.</div>
+                    </div>
+                </div>
+                <div class="mt-6 p-4 rounded-sm" style="border-left: 3px solid var(--accent); background-color: rgba(127, 182, 133, 0.08);">
+                    <div style="font-size: 14px; color: var(--text); line-height: 1.6; font-weight: 400;">
+                        The strategic pattern: the less emotionally safe the world feels, the more people pay for connection that asks nothing of them. This is sustainable for businesses. It's questionable for humans. And it creates a massive opening for a product that does the opposite.
+                    </div>
+                </div>
+            </div>
+
+            <!-- JTBD -->
+            <div class="fade-in grid grid-cols-2 gap-4 mb-6" style="transition: all 0.65s ease-out 0.12s;">
+                <div class="p-6 rounded-sm" style="background-color: #FFFFFF; border: 1px solid var(--borderLight);">
+                    <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">Jobs-To-Be-Done Analysis</div>
+                    <div class="space-y-4">
+                        <div style="border-bottom: 1px solid var(--borderLight); padding-bottom: 12px;">
+                            <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 4px;">AI Companions</div>
+                            <div style="font-size: 12px; color: var(--muted); margin-bottom: 2px;">Surface job: Conversation partner</div>
+                            <div style="font-size: 13px; color: var(--textOnLight); font-weight: 500;">Actual job: Low-stakes companionship without emotional risk</div>
+                        </div>
+                        <div style="border-bottom: 1px solid var(--borderLight); padding-bottom: 12px;">
+                            <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 4px;">Dating App Premium</div>
+                            <div style="font-size: 12px; color: var(--muted); margin-bottom: 2px;">Surface job: Better matches</div>
+                            <div style="font-size: 13px; color: var(--textOnLight); font-weight: 500;">Actual job: Hope that someone better is out there</div>
+                        </div>
+                        <div style="border-bottom: 1px solid var(--borderLight); padding-bottom: 12px;">
+                            <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 4px;">Quick Commerce</div>
+                            <div style="font-size: 12px; color: var(--muted); margin-bottom: 2px;">Surface job: Fast groceries</div>
+                            <div style="font-size: 13px; color: var(--textOnLight); font-weight: 500;">Actual job: Control in a chaotic, overwhelming life</div>
+                        </div>
+                        <div>
+                            <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 4px;">LinkedIn Premium</div>
+                            <div style="font-size: 12px; color: var(--muted); margin-bottom: 2px;">Surface job: Career tools</div>
+                            <div style="font-size: 13px; color: var(--textOnLight); font-weight: 500;">Actual job: Visibility and validation in a status economy</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6 rounded-sm" style="background-color: rgba(127, 182, 133, 0.1); border: 1px solid rgba(127, 182, 133, 0.2);">
+                    <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">The Unserved Job</div>
+                    <div style="font-size: 18px; font-weight: 600; color: var(--textOnLight); line-height: 1.35; margin-bottom: 12px;">
+                        "I need a high-signal, recurring social system that handles the cognitive load of planning so I can focus on connection."
+                    </div>
+                    <div style="font-size: 13px; color: var(--muted); line-height: 1.6;">
+                        No product in the Indian market is designed for this job. Dating apps address matching. Meetup addresses discovery. Therapy addresses healing. But none address the structural problem: adults have lost the infrastructure that made friendship formation automatic — schools, hostels, neighborhoods. Rituals rebuilds that infrastructure.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ━━━ THE WHITE SPACE ━━━ -->
+    <section class="section" style="background-color: var(--dark);">
+        <div class="max-w-4xl">
+            <div class="fade-in">
+                <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">Part 2 — The White Space</div>
+                <h2 style="color: var(--text); margin-bottom: 12px;">Every quadrant is crowded except one.</h2>
+                <p style="font-size: 15px; font-weight: 300; color: #9CA3A0; line-height: 1.7; max-width: 620px; margin-bottom: 32px;">
+                    I mapped the competitive landscape across two axes that matter: how much cognitive load a product demands and how much genuine intimacy it produces.
+                </p>
+            </div>
+
+            <div class="fade-in p-8 rounded-sm mb-8" style="background-color: var(--darkSurface); border: 1px solid var(--border); transition: all 0.65s ease-out 0.08s;">
+                <div class="relative" style="width: 100%; height: 400px;">
+                    <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background-color: var(--border);"></div>
+                    <div style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background-color: var(--border);"></div>
+                    <div style="position: absolute; top: -4px; left: 50%; transform: translateX(-50%); font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); letter-spacing: 0.12em;">HIGH INTIMACY</div>
+                    <div style="position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); letter-spacing: 0.12em;">LOW INTIMACY</div>
+                    <div style="position: absolute; left: 4px; top: 50%; transform: translateY(-50%); font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); letter-spacing: 0.12em;">LOW EFFORT</div>
+                    <div style="position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); letter-spacing: 0.12em;">HIGH EFFORT</div>
+                    <div style="position: absolute; top: 12px; left: 8px; font-family: 'DM Mono', monospace; font-size: 8px; color: var(--accent); letter-spacing: 0.08em; opacity: 0.5;">THE WHITE SPACE</div>
+                    <div style="position: absolute; left: 2%; top: 2%; width: 47%; height: 47%; border: 1px dashed rgba(127, 182, 133, 0.27); border-radius: 4px; background-color: rgba(127, 182, 133, 0.05);"></div>
+                    
+                    <!-- Products positions -->
+                    <div style="position: absolute; left: 18%; top: 68%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center;">
+                        <div style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--muted); opacity: 0.6; margin-bottom: 4px;"></div>
+                        <span style="font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); text-align: center;">AI Companions</span>
+                    </div>
+                    <div style="position: absolute; left: 22%; top: 78%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center;">
+                        <div style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--muted); opacity: 0.6; margin-bottom: 4px;"></div>
+                        <span style="font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); text-align: center;">Streaming</span>
+                    </div>
+                    <div style="position: absolute; left: 15%; top: 72%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center;">
+                        <div style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--muted); opacity: 0.6; margin-bottom: 4px;"></div>
+                        <span style="font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); text-align: center;">Quick Commerce</span>
+                    </div>
+                    <div style="position: absolute; left: 62%; top: 60%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center;">
+                        <div style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--muted); opacity: 0.6; margin-bottom: 4px;"></div>
+                        <span style="font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); text-align: center;">Instagram</span>
+                    </div>
+                    <div style="position: absolute; left: 68%; top: 55%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center;">
+                        <div style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--muted); opacity: 0.6; margin-bottom: 4px;"></div>
+                        <span style="font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); text-align: center;">Dating Apps</span>
+                    </div>
+                    <div style="position: absolute; left: 72%; top: 48%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center;">
+                        <div style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--muted); opacity: 0.6; margin-bottom: 4px;"></div>
+                        <span style="font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); text-align: center;">Bumble BFF</span>
+                    </div>
+                    <div style="position: absolute; left: 65%; top: 42%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center;">
+                        <div style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--muted); opacity: 0.6; margin-bottom: 4px;"></div>
+                        <span style="font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); text-align: center;">Meetup</span>
+                    </div>
+                    <div style="position: absolute; left: 78%; top: 18%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center;">
+                        <div style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--muted); opacity: 0.6; margin-bottom: 4px;"></div>
+                        <span style="font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); text-align: center; white-space: pre-line; line-height: 1.2;">Traditional<br>Friendship</span>
+                    </div>
+
+                    <!-- Rituals -->
+                    <div style="position: absolute; left: 25%; top: 22%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center;">
+                        <div style="width: 16px; height: 16px; border-radius: 50%; background-color: var(--accent); margin-bottom: 6px; box-shadow: 0 0 20px rgba(127, 182, 133, 0.4);"></div>
+                        <span style="font-family: 'Playfair Display', serif; font-size: 12px; color: var(--accent); font-weight: 700; letter-spacing: 0.08em;">RITUALS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fade-in grid grid-cols-2 gap-4 mb-8" style="transition: all 0.65s ease-out 0.12s;">
+                <div class="p-5 rounded-sm" style="background-color: var(--darkSurface); border: 1px solid var(--border);">
+                    <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--red); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">Crowded Quadrants</div>
+                    <div class="space-y-3" style="font-size: 13px; color: #9CA3A0; line-height: 1.5;">
+                        <div><span style="color: var(--text); font-weight: 500;">Low effort × Low intimacy:</span> AI companions, streaming, quick commerce.</div>
+                        <div><span style="color: var(--text); font-weight: 500;">High effort × Low intimacy:</span> Dating apps, social media.</div>
+                        <div><span style="color: var(--text); font-weight: 500;">High effort × High intimacy:</span> Traditional friendship.</div>
+                    </div>
+                </div>
+                <div class="p-5 rounded-sm" style="background-color: rgba(127, 182, 133, 0.07); border: 1px solid rgba(127, 182, 133, 0.27);">
+                    <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">The Empty Quadrant</div>
+                    <div style="font-size: 16px; color: var(--text); font-weight: 600; margin-bottom: 8px;">Low effort × High intimacy</div>
+                    <div style="font-size: 13px; color: #9CA3A0; line-height: 1.55;">
+                        Products that produce genuine, repeated connection — but remove the cognitive load of planning. The user's only job is to show up. Nobody is building here.
+                    </div>
+                </div>
+            </div>
+
+            <div class="fade-in p-6 rounded-sm" style="border-left: 3px solid var(--accent); background-color: var(--darkSurface); transition: all 0.65s ease-out 0.15s;">
+                <div style="font-size: 16px; font-weight: 500; color: var(--text); line-height: 1.6;">
+                    The core insight: humans don't bond through profiles. They bond through repeated, low-stakes proximity. Research shows it takes 3-4 shared experiences with the same people to cross from "stranger" to "friend." No product in the Indian market is architected around this principle. That's the gap.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ━━━ DEMAND VALIDATION ━━━ -->
+    <section class="section" style="background-color: var(--light);">
+        <div class="max-w-4xl">
+            <div class="fade-in">
+                <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">Part 3 — Demand Validation</div>
+                <h2 style="color: var(--textOnLight); margin-bottom: 12px;">42 people told me exactly what they wanted. Before I built anything.</h2>
+                <p style="font-size: 15px; font-weight: 300; color: var(--muted); line-height: 1.7; max-width: 620px; margin-bottom: 32px;">
+                    I posted on r/BangaloreMeetups — not as a product pitch, but as a genuine question: "Is anyone else in Blr just... tired of trying to make friends?" 12K views. 47 upvotes. 83 comments. 42 people filled out the Google Form.
+                </p>
+            </div>
+
+            <div class="fade-in grid grid-cols-3 gap-4 mb-8" style="transition: all 0.65s ease-out 0.08s;">
+                <div class="p-5 rounded-sm" style="background-color: #FFFFFF; border: 1px solid var(--borderLight);">
+                    <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">Activity Preferences (n=42)</div>
+                    <div class="space-y-2">
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <span style="font-size: 11px; color: var(--textOnLight);">Just hanging out</span>
+                                <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); font-weight: 500;">69%</span>
+                            </div>
+                            <div class="h-1.5 rounded-full overflow-hidden" style="background-color: var(--lightSurface);">
+                                <div class="h-full rounded-full" style="width: 69%; background-color: var(--accent);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <span style="font-size: 11px; color: var(--textOnLight);">Don't care, want company</span>
+                                <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); font-weight: 500;">59.5%</span>
+                            </div>
+                            <div class="h-1.5 rounded-full overflow-hidden" style="background-color: var(--lightSurface);">
+                                <div class="h-full rounded-full" style="width: 59.5%; background-color: var(--accent);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <span style="font-size: 11px; color: var(--textOnLight);">Outdoor activities</span>
+                                <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); font-weight: 500;">52.4%</span>
+                            </div>
+                            <div class="h-1.5 rounded-full overflow-hidden" style="background-color: var(--lightSurface);">
+                                <div class="h-full rounded-full" style="width: 52.4%; background-color: var(--accent);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <span style="font-size: 11px; color: var(--textOnLight);">Creative</span>
+                                <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); font-weight: 500;">33.3%</span>
+                            </div>
+                            <div class="h-1.5 rounded-full overflow-hidden" style="background-color: var(--lightSurface);">
+                                <div class="h-full rounded-full" style="width: 33.3%; background-color: var(--accent);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <span style="font-size: 11px; color: var(--textOnLight);">Skill sharing</span>
+                                <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); font-weight: 500;">23.8%</span>
+                            </div>
+                            <div class="h-1.5 rounded-full overflow-hidden" style="background-color: var(--lightSurface);">
+                                <div class="h-full rounded-full" style="width: 23.8%; background-color: var(--accent);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-5 rounded-sm" style="background-color: #FFFFFF; border: 1px solid var(--borderLight);">
+                    <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">What Matters Most (n=42)</div>
+                    <div class="space-y-2">
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <span style="font-size: 11px; color: var(--textOnLight);">Genuine conversations</span>
+                                <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); font-weight: 500;">61.9%</span>
+                            </div>
+                            <div class="h-1.5 rounded-full overflow-hidden" style="background-color: var(--lightSurface);">
+                                <div class="h-full rounded-full" style="width: 61.9%; background-color: var(--accent);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <span style="font-size: 11px; color: var(--textOnLight);">Making each other laugh</span>
+                                <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); font-weight: 500;">54.8%</span>
+                            </div>
+                            <div class="h-1.5 rounded-full overflow-hidden" style="background-color: var(--lightSurface);">
+                                <div class="h-full rounded-full" style="width: 54.8%; background-color: var(--accent);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <span style="font-size: 11px; color: var(--textOnLight);">Learning together</span>
+                                <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); font-weight: 500;">50%</span>
+                            </div>
+                            <div class="h-1.5 rounded-full overflow-hidden" style="background-color: var(--lightSurface);">
+                                <div class="h-full rounded-full" style="width: 50%; background-color: var(--accent);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <span style="font-size: 11px; color: var(--textOnLight);">Being yourself</span>
+                                <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); font-weight: 500;">45.2%</span>
+                            </div>
+                            <div class="h-1.5 rounded-full overflow-hidden" style="background-color: var(--lightSurface);">
+                                <div class="h-full rounded-full" style="width: 45.2%; background-color: var(--accent);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <span style="font-size: 11px; color: var(--textOnLight);">Consistent people</span>
+                                <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); font-weight: 500;">33.3%</span>
+                            </div>
+                            <div class="h-1.5 rounded-full overflow-hidden" style="background-color: var(--lightSurface);">
+                                <div class="h-full rounded-full" style="width: 33.3%; background-color: var(--accent);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-5 rounded-sm flex flex-col items-center justify-center" style="background-color: #FFFFFF; border: 1px solid var(--borderLight);">
+                    <div style="font-size: 48px; font-weight: 800; color: var(--accent); line-height: 1;">78.6%</div>
+                    <div style="font-size: 14px; color: var(--textOnLight); font-weight: 500; margin-top: 8px; text-align: center;">comfortable with mixed groups</div>
+                    <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">19% no preference · 2.4% women-only</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ━━━ THE SOLUTION ━━━ -->
+    <section class="section" style="background-color: var(--dark);">
+        <div class="max-w-4xl">
+            <div class="fade-in">
+                <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">Part 4 — The Solution</div>
+                <h2 style="color: var(--text); margin-bottom: 12px;">Rituals: an offline-first platform for structured group connection.</h2>
+                <div class="grid grid-cols-5 gap-8 mt-8">
+                    <div class="col-span-3">
+                        <div class="space-y-4" style="font-size: 15px; font-weight: 300; color: #9CA3A0; line-height: 1.7;">
+                            <p>Match 4-6 people into a small cohort based on life stage and values. Same group, same venue, same time — every week for 4 weeks. No profiles, no texting before you meet. You just show up.</p>
+                            <p>The platform handles everything that kills adult friendships: coordination, planning, the "are we still on?" dance. Rituals removes cognitive load so users can focus on the only thing that matters — being present.</p>
+                        </div>
+                    </div>
+                    <div class="col-span-2">
+                        <div class="p-5 rounded-sm" style="background-color: var(--darkSurface); border: 1px solid var(--border);">
+                            <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">Positioning</div>
+                            <div class="space-y-2" style="font-size: 13px; line-height: 1.55;">
+                                <div><span style="color: var(--muted);">For</span> <span style="color: var(--text);">relocated urban professionals, 24-32</span></div>
+                                <div><span style="color: var(--muted);">Who</span> <span style="color: var(--text);">experience situational loneliness</span></div>
+                                <div><span style="color: var(--muted);">Rituals is</span> <span style="color: var(--text);">an offline-first community platform</span></div>
+                                <div><span style="color: var(--muted);">That</span> <span style="color: var(--text);">replaces swiping with recurring group rituals</span></div>
+                                <div><span style="color: var(--muted);">Unlike</span> <span style="color: var(--text);">Bumble BFF, Meetup, AI companions</span></div>
+                                <div><span style="color: var(--muted);">We</span> <span style="color: var(--accent); font-weight: 600;">design for belonging, not engagement.</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brand system -->
+            <div class="fade-in mt-10 p-8 rounded-sm" style="background-color: var(--ritualsBg); transition: all 0.65s ease-out 0.1s;">
+                <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--ritualsAccent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">Brand System</div>
+                <div class="flex items-center justify-center py-8 mb-6" style="border-bottom: 1px solid #2A2A2A;">
+                    <span style="font-family: 'Playfair Display', serif; font-weight: 800; font-size: 52px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ritualsBone);">RITUALS</span>
+                </div>
+                <div class="flex items-center justify-center pb-6 mb-6" style="border-bottom: 1px solid #2A2A2A;">
+                    <div class="text-center">
+                        <span style="font-family: 'Playfair Display', serif; font-weight: 700; font-size: 32px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ritualsBone);">RITUALS</span>
+                        <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: #A39382; letter-spacing: 0.25em; margin-top: 6px; text-transform: uppercase;">Infrastructure for adult friendship</div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-4 gap-3 mb-6">
+                    <div class="flex items-center gap-3 p-3 rounded-sm" style="background-color: #1A1A1A;">
+                        <div class="w-8 h-8 rounded-sm shrink-0" style="background-color: #141414;"></div>
+                        <div>
+                            <div style="font-size: 11px; color: var(--ritualsBone); font-weight: 500;">Obsidian</div>
+                            <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: #666;">#141414</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 rounded-sm" style="background-color: #1A1A1A;">
+                        <div class="w-8 h-8 rounded-sm shrink-0" style="background-color: #F0EBE3; border: 1px solid #333;"></div>
+                        <div>
+                            <div style="font-size: 11px; color: var(--ritualsBone); font-weight: 500;">Bone</div>
+                            <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: #666;">#F0EBE3</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 rounded-sm" style="background-color: #1A1A1A;">
+                        <div class="w-8 h-8 rounded-sm shrink-0" style="background-color: #C4572A;"></div>
+                        <div>
+                            <div style="font-size: 11px; color: var(--ritualsBone); font-weight: 500;">Terracotta</div>
+                            <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: #666;">#C4572A</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 rounded-sm" style="background-color: #1A1A1A;">
+                        <div class="w-8 h-8 rounded-sm shrink-0" style="background-color: #A39382;"></div>
+                        <div>
+                            <div style="font-size: 11px; color: var(--ritualsBone); font-weight: 500;">Warm Stone</div>
+                            <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: #666;">#A39382</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="p-3 rounded-sm" style="background-color: #1A1A1A;">
+                        <div style="font-size: 12px; color: var(--ritualsBone); font-weight: 500; margin-bottom: 4px;">Your standing Tuesday.</div>
+                        <div style="font-size: 11px; color: #555; text-decoration: line-through;">Find your tribe!</div>
+                    </div>
+                    <div class="p-3 rounded-sm" style="background-color: #1A1A1A;">
+                        <div style="font-size: 12px; color: var(--ritualsBone); font-weight: 500; margin-bottom: 4px;">4 people. 6 weeks. No texting.</div>
+                        <div style="font-size: 11px; color: #555; text-decoration: line-through;">Connect with amazing people!</div>
+                    </div>
+                    <div class="p-3 rounded-sm" style="background-color: #1A1A1A;">
+                        <div style="font-size: 12px; color: var(--ritualsBone); font-weight: 500; margin-bottom: 4px;">The app you delete because it worked.</div>
+                        <div style="font-size: 11px; color: #555; text-decoration: line-through;">Building meaningful connections ❤️</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ━━━ THE EXPERIMENT ━━━ -->
+    <section class="section" style="background-color: var(--light);">
+        <div class="max-w-4xl">
+            <div class="fade-in">
+                <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">Part 5 — The Experiment</div>
+                <h2 style="color: var(--textOnLight); margin-bottom: 12px;">4 weeks. 6 strangers. One graduation dinner.</h2>
+                <p style="font-size: 15px; font-weight: 300; color: var(--muted); line-height: 1.7; max-width: 620px; margin-bottom: 40px;">
+                    Theory is worthless until it meets reality. I ran a 4-week pilot in Bangalore to test whether the infrastructure I'd designed could produce genuine connection between strangers, sustained over time, with minimal effort from the participants.
+                </p>
+            </div>
+
+            <!-- Week 1 -->
+            <div class="fade-in p-6 rounded-sm mb-4" style="background-color: #FFFFFF; border: 1px solid var(--borderLight); transition: all 0.65s ease-out 0.06s;">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-3">
+                        <span class="px-2 py-1 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 10px; background-color: rgba(224, 90, 71, 0.15); color: var(--red); font-weight: 500;">WEEK 1</span>
+                        <span style="font-size: 16px; font-weight: 600; color: var(--textOnLight);">The Commitment Chasm</span>
+                    </div>
+                    <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--red);">50% ATTENDANCE</span>
+                </div>
+                <div style="font-size: 14px; color: var(--muted); line-height: 1.65;">
+                    Pottery painting at Klayworkz Barista, JP Nagar. 6 matched, 3 showed up — Aakash (27, writer), Hari (37, Google SWE III), and Projat. The artifact icebreaker worked. The pottery was tolerated, not loved. But the conversations — about relocating, loneliness, the gap between "having people around" and "having people" — those landed. The 50% flake rate was data: the gap between "I want this" and "I'll show up" is a chasm you cross with structure, not enthusiasm.
+                </div>
+            </div>
+
+            <!-- Pivot -->
+            <div class="fade-in p-5 rounded-sm mb-4" style="background-color: var(--dark); transition: all 0.65s ease-out 0.08s;">
+                <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--amber); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">The Operational Pivot</div>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="p-4 rounded-sm" style="background-color: var(--darkSurface); border: 1px solid var(--border);">
+                        <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--amber); letter-spacing: 0.08em; margin-bottom: 6px;">FIX 1</div>
+                        <div style="font-size: 13px; color: var(--text); font-weight: 500; margin-bottom: 4px;">₹500 commitment deposit</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.4;">Refundable on attendance. Skin in the game. Filters for intent over interest.</div>
+                    </div>
+                    <div class="p-4 rounded-sm" style="background-color: var(--darkSurface); border: 1px solid var(--border);">
+                        <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--amber); letter-spacing: 0.08em; margin-bottom: 6px;">FIX 2</div>
+                        <div style="font-size: 13px; color: var(--text); font-weight: 500; margin-bottom: 4px;">New cohort composition</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.4;">Merged 3 proven participants with 3 newly vetted profiles. Mixed-gender based on form data (78.6% preferred mixed).</div>
+                    </div>
+                    <div class="p-4 rounded-sm" style="background-color: var(--darkSurface); border: 1px solid var(--border);">
+                        <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--amber); letter-spacing: 0.08em; margin-bottom: 6px;">FIX 3</div>
+                        <div style="font-size: 13px; color: var(--text); font-weight: 500; margin-bottom: 4px;">Activity from data</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.4;">52.4% wanted outdoor/physical. Week 2 became a tango workshop. On Valentine's Day.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weeks 2-4 -->
+            <div class="fade-in grid grid-cols-3 gap-4 mb-6" style="transition: all 0.65s ease-out 0.1s;">
+                <div class="p-5 rounded-sm" style="background-color: #FFFFFF; border: 1px solid var(--borderLight);">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-2 py-1 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 9px; background-color: rgba(127, 182, 133, 0.15); color: var(--accent); font-weight: 500;">WEEK 2</span>
+                        <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); font-weight: 600;">6/6</span>
+                    </div>
+                    <div style="font-size: 16px; font-weight: 600; color: var(--textOnLight); margin-bottom: 2px;">Valentine's Tango</div>
+                    <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); margin-bottom: 8px;">Tango Workshop, Bangalore</div>
+                    <div style="font-size: 13px; color: var(--muted); line-height: 1.55;">Six strangers spent Valentine's Day learning tango together. Physical activity broke barriers faster than conversation alone. 100% attendance.</div>
+                </div>
+                <div class="p-5 rounded-sm" style="background-color: #FFFFFF; border: 1px solid var(--borderLight);">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-2 py-1 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 9px; background-color: rgba(127, 182, 133, 0.15); color: var(--accent); font-weight: 500;">WEEK 3</span>
+                        <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); font-weight: 600;">6/6</span>
+                    </div>
+                    <div style="font-size: 16px; font-weight: 600; color: var(--textOnLight); margin-bottom: 2px;">Terrarium Workshop</div>
+                    <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); margin-bottom: 8px;">Indiranagar</div>
+                    <div style="font-size: 13px; color: var(--muted); line-height: 1.55;">Collaborative creation. Artifact icebreakers continued deepening conversation. The group had inside jokes by now.</div>
+                </div>
+                <div class="p-5 rounded-sm" style="background-color: #FFFFFF; border: 1px solid var(--borderLight);">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-2 py-1 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 9px; background-color: rgba(127, 182, 133, 0.15); color: var(--accent); font-weight: 500;">WEEK 4</span>
+                        <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); font-weight: 600;">6/6</span>
+                    </div>
+                    <div style="font-size: 16px; font-weight: 600; color: var(--textOnLight); margin-bottom: 2px;">Graduation Dinner</div>
+                    <div style="font-family: 'DM Mono', monospace; font-size: 9px; color: var(--muted); margin-bottom: 8px;">Chinese Restaurant, Indiranagar</div>
+                    <div style="font-size: 13px; color: var(--muted); line-height: 1.55;">No structured activity. Just dinner. Six people who met 3 weeks ago chose to spend a Friday night together. The proof.</div>
+                </div>
+            </div>
+
+            <!-- Quote -->
+            <div class="fade-in p-6 rounded-sm mb-6" style="border-left: 3px solid var(--accent); background-color: rgba(127, 182, 133, 0.08); transition: all 0.65s ease-out 0.12s;">
+                <div style="font-size: 17px; color: var(--textOnLight); line-height: 1.6; font-style: italic; font-weight: 300;">
+                    "Going tango dancing with a group I got matched with was definitely not how I pictured spending Valentine's Day alone, but I am so glad I did."
+                </div>
+                <div class="mt-3" style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted);">— Sumedha, 32, Sales Executive</div>
+            </div>
+
+            <!-- Results -->
+            <div class="fade-in p-6 rounded-sm" style="background-color: var(--dark); transition: all 0.65s ease-out 0.14s;">
+                <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">The Numbers</div>
+                <div class="grid grid-cols-4 gap-4 mt-4">
+                    <div class="p-4 rounded-sm" style="background-color: var(--darkSurface); border: 1px solid var(--border);">
+                        <div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px; color: var(--accent);">50% → 100%</div>
+                        <div style="font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px;">After commitment fee</div>
+                    </div>
+                    <div class="p-4 rounded-sm" style="background-color: var(--darkSurface); border: 1px solid var(--border);">
+                        <div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px; color: var(--accent);">100%</div>
+                        <div style="font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px;">Retention Weeks 2-4</div>
+                    </div>
+                    <div class="p-4 rounded-sm" style="background-color: var(--darkSurface); border: 1px solid var(--border);">
+                        <div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px; color: var(--accent);">6/6</div>
+                        <div style="font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px;">Graduation dinner</div>
+                    </div>
+                    <div class="p-4 rounded-sm" style="background-color: var(--darkSurface); border: 1px solid var(--border);">
+                        <div style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 20px; color: var(--accent);">~40 min</div>
+                        <div style="font-family: 'DM Mono', monospace; font-size: 8px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px;">Time to genuine shift</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ━━━ WHAT I LEARNED ━━━ -->
+    <section class="section" style="background-color: var(--dark);">
+        <div class="max-w-4xl">
+            <div class="fade-in">
+                <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">Part 6 — What I Learned</div>
+                <h2 style="color: var(--text); margin-bottom: 32px;">Hypothesis vs. reality.</h2>
+            </div>
+
+            <div class="space-y-3">
+                <div class="fade-in p-5 rounded-sm flex gap-4" style="background-color: var(--darkSurface); border: 1px solid var(--border); transition: all 0.65s ease-out 0s;">
+                    <div style="width: 3px; border-radius: 2px; background-color: var(--amber); flex-shrink: 0;"></div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span style="font-size: 12px; color: var(--muted); font-style: italic;">Curated activities drive connection</span>
+                            <span class="px-2 py-0.5 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; background-color: rgba(212, 168, 83, 0.15); color: var(--amber);">PARTIAL</span>
+                        </div>
+                        <div style="font-size: 14px; color: var(--text); font-weight: 500; margin-bottom: 4px;">Conversations drive connection. Activities are catalysts.</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">The artifact icebreaker worked. Pottery was tolerated. Tango energized. But every participant said conversations were what mattered.</div>
+                    </div>
+                </div>
+
+                <div class="fade-in p-5 rounded-sm flex gap-4" style="background-color: var(--darkSurface); border: 1px solid var(--border); transition: all 0.65s ease-out 0.04s;">
+                    <div style="width: 3px; border-radius: 2px; background-color: var(--red); flex-shrink: 0;"></div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span style="font-size: 12px; color: var(--muted); font-style: italic;">80%+ attendance without commitment</span>
+                            <span class="px-2 py-0.5 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; background-color: rgba(224, 90, 71, 0.15); color: var(--red);">INVALIDATED</span>
+                        </div>
+                        <div style="font-size: 14px; color: var(--text); font-weight: 500; margin-bottom: 4px;">50% without. 100% with ₹500 refundable deposit.</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">The commitment chasm was the biggest learning. A small deposit transformed attendance overnight.</div>
+                    </div>
+                </div>
+
+                <div class="fade-in p-5 rounded-sm flex gap-4" style="background-color: var(--darkSurface); border: 1px solid var(--border); transition: all 0.65s ease-out 0.08s;">
+                    <div style="width: 3px; border-radius: 2px; background-color: var(--accent); flex-shrink: 0;"></div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span style="font-size: 12px; color: var(--muted); font-style: italic;">Same group, recurring = friendships form</span>
+                            <span class="px-2 py-0.5 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; background-color: rgba(127, 182, 133, 0.15); color: var(--accent);">VALIDATED</span>
+                        </div>
+                        <div style="font-size: 14px; color: var(--text); font-weight: 500; margin-bottom: 4px;">Validated. 100% retention. Graduation dinner happened.</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">By Week 3 they had inside jokes. By Week 4 they chose dinner with no structure. The cohort model IS the product.</div>
+                    </div>
+                </div>
+
+                <div class="fade-in p-5 rounded-sm flex gap-4" style="background-color: var(--darkSurface); border: 1px solid var(--border); transition: all 0.65s ease-out 0.12s;">
+                    <div style="width: 3px; border-radius: 2px; background-color: var(--accent); flex-shrink: 0;"></div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span style="font-size: 12px; color: var(--muted); font-style: italic;">The 'polite to real' shift happens naturally</span>
+                            <span class="px-2 py-0.5 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; background-color: rgba(127, 182, 133, 0.15); color: var(--accent);">VALIDATED</span>
+                        </div>
+                        <div style="font-size: 14px; color: var(--text); font-weight: 500; margin-bottom: 4px;">Happened at ~40 min, faster in later weeks.</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">The artifact icebreaker is the mechanism. Designable, repeatable, compounds over weeks. Core IP.</div>
+                    </div>
+                </div>
+
+                <div class="fade-in p-5 rounded-sm flex gap-4" style="background-color: var(--darkSurface); border: 1px solid var(--border); transition: all 0.65s ease-out 0.16s;">
+                    <div style="width: 3px; border-radius: 2px; background-color: var(--accent); flex-shrink: 0;"></div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span style="font-size: 12px; color: var(--muted); font-style: italic;">Mixed-gender groups work</span>
+                            <span class="px-2 py-0.5 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; background-color: rgba(127, 182, 133, 0.15); color: var(--accent);">VALIDATED</span>
+                        </div>
+                        <div style="font-size: 14px; color: var(--text); font-weight: 500; margin-bottom: 4px;">78.6% preferred mixed. 100% retention in mixed cohort.</div>
+                        <div style="font-size: 12px; color: var(--muted); line-height: 1.5;">Valentine's tango with a mixed group produced the strongest participant quote of the entire pilot.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ━━━ WHAT'S NEXT ━━━ -->
+    <section class="section" style="background-color: var(--light);">
+        <div class="max-w-4xl">
+            <div class="fade-in">
+                <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">Part 7 — What's Next</div>
+                <h2 style="color: var(--textOnLight); margin-bottom: 24px;">From pilot to platform.</h2>
+            </div>
+            <div class="fade-in grid grid-cols-3 gap-4 mb-8" style="transition: all 0.65s ease-out 0.08s;">
+                <div class="p-6 rounded-sm" style="background-color: #FFFFFF; border: 1px solid var(--borderLight);">
+                    <span class="px-2 py-1 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 9px; background-color: rgba(127, 182, 133, 0.15); color: var(--accent); font-weight: 500;">PHASE 1</span>
+                    <div class="mt-3" style="font-size: 18px; font-weight: 600; color: var(--textOnLight);">Full-Service Curation</div>
+                    <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-bottom: 8px;">Now — Month 6</div>
+                    <div style="font-size: 13px; color: var(--muted); line-height: 1.55;">I match, curate, handle logistics. Build trust. Prove the model. 300 members, 70%+ retention.</div>
+                </div>
+                <div class="p-6 rounded-sm" style="background-color: #FFFFFF; border: 1px solid var(--borderLight);">
+                    <span class="px-2 py-1 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 9px; background-color: rgba(127, 182, 133, 0.15); color: var(--accent); font-weight: 500;">PHASE 2</span>
+                    <div class="mt-3" style="font-size: 18px; font-weight: 600; color: var(--textOnLight);">User-Generated Clubs</div>
+                    <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-bottom: 8px;">Month 7–12</div>
+                    <div style="font-size: 13px; color: var(--muted); line-height: 1.55;">Power users create their own clubs. Rituals provides infrastructure — venue partnerships, behavioral design tools, commitment mechanics.</div>
+                </div>
+                <div class="p-6 rounded-sm" style="background-color: #FFFFFF; border: 1px solid var(--borderLight);">
+                    <span class="px-2 py-1 rounded-sm" style="font-family: 'DM Mono', monospace; font-size: 9px; background-color: rgba(127, 182, 133, 0.15); color: var(--accent); font-weight: 500;">PHASE 3</span>
+                    <div class="mt-3" style="font-size: 18px; font-weight: 600; color: var(--textOnLight);">Two-Sided Marketplace</div>
+                    <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-bottom: 8px;">Month 13+</div>
+                    <div style="font-size: 13px; color: var(--muted); line-height: 1.55;">Open platform. Hosts create, members join. Network effects. Social utility, not service.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ━━━ CLOSING ━━━ -->
+    <section class="section" style="background-color: var(--dark);">
+        <div class="max-w-4xl">
+            <div class="fade-in">
+                <div style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;">Why This Matters</div>
+                <div style="font-size: 20px; font-weight: 300; color: #9CA3A0; line-height: 1.7; max-width: 600px; margin-bottom: 24px;">
+                    I wrote this case study because I kept noticing the same pattern — in myself, in my peers, and in the products we use every day. We're surrounded by tools designed to make loneliness easier to live with. Very few help us move through it.
+                </div>
+                <div style="font-size: 15px; font-weight: 400; color: var(--text); line-height: 1.7; max-width: 600px; margin-bottom: 24px;">
+                    Working on Rituals forced me to do the thing I'm best at: spot a pattern early, break it into something actionable, and then actually build it — not as a deck, but as a real thing with real people that produced real results. The graduation dinner wasn't a metric. It was six people who met through a system I designed choosing to spend an evening together because they wanted to.
+                </div>
+                <div style="font-size: 15px; font-weight: 400; color: var(--text); line-height: 1.7; max-width: 600px;">
+                    That's what I do. I find gaps in how products reach people, design the infrastructure to close them, and test everything with real users. If that thinking is useful to your team, I'd love to build something together.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ━━━ METHODOLOGY ━━━ -->
+    <section class="section" style="background-color: var(--light);">
+        <div class="max-w-4xl grid grid-cols-3 gap-6" style="font-size: 12px; color: var(--muted); line-height: 1.55;">
+            <div>
+                <div style="font-weight: 600; color: var(--textOnLight); margin-bottom: 4px; font-size: 13px;">Sample & Data</div>
+                42 form responses. 6 pilot participants, 4 weeks. 2 in-depth interviews (Whalen's Six Minds). WhatsApp feedback from all. Directional data from a live experiment.
+            </div>
+            <div>
+                <div style="font-weight: 600; color: var(--textOnLight); margin-bottom: 4px; font-size: 13px;">Research Framework</div>
+                Interview script mapped to John Whalen's Six Minds of Experience: Vision, Wayfinding, Language, Memory, Emotion, Decision Making.
+            </div>
+            <div>
+                <div style="font-weight: 600; color: var(--textOnLight); margin-bottom: 4px; font-size: 13px;">Transparency</div>
+                All numbers observed from the pilot. Financial projections from original analysis excluded. Where something is projected, it's labelled.
+            </div>
+        </div>
+    </section>
+
+    <!-- ━━━ FOOTER ━━━ -->
+    <section style="background-color: var(--dark); padding: 32px 48px;">
+        <div class="max-w-4xl flex items-center justify-between">
+            <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; cursor: pointer;">← BACK TO PORTFOLIO</span>
+            <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted);">DIVYANSHI GUPTA · 2026</span>
+            <span style="font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.1em; cursor: pointer;">NEXT: KALEIDO LVLUP →</span>
+        </div>
+    </section>
+
+    <script>
+        // Fade-in on scroll animation
+        const observerOptions = {
+            threshold: 0.12,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
